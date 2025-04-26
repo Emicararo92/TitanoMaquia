@@ -1,0 +1,121 @@
+/* Contenedor principal */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Grid de celdas de fondo */
+.home {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  cursor: url("../../public/rubik.png"), auto;
+}
+
+.tile {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+.tile:hover {
+  transition: background-color 0.1s ease;
+}
+
+/* Contenido del hero - Nueva disposición */
+.heroContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Contenedor del texto */
+.heroText {
+  flex: 1;
+  max-width: 600px;
+  text-align: left;
+  padding-right: 5%;
+}
+
+.gameTitle {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #b5a1ff, #8fd3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(143, 211, 255, 0.3);
+  line-height: 1.1;
+}
+
+.titlePart {
+  display: block;
+}
+
+.tagline {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 1px;
+}
+
+.ctaButton {
+  background: linear-gradient(45deg, #b5a1ff, #ffb5e8);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  pointer-events: auto;
+  font-weight: 600;
+  color: white;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(181, 161, 255, 0.4);
+}
+
+/* Contenedor del cubo Rubik - Más grande */
+.rubikHero {
+  width: clamp(200px, 30vw, 400px);
+  height: clamp(200px, 30vw, 400px);
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroText {
+    padding-right: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .gameTitle {
+    font-size: 3rem;
+  }
+
+  .rubikHero {
+    width: 200px;
+    height: 200px;
+  }
+}
