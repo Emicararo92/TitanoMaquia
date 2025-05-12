@@ -1,6 +1,7 @@
 "use client";
 import styles from "../../style/home.module.css";
-import { InteractiveRubikCube } from "../cuboRubik/cuboRubik";
+import { InteractiveRubikCube } from "../cuboRubik/cuboRubikA";
+import { InteractiveRubikCubeB } from "../cuboRubik/cuboRubikB";
 import { useCallback } from "react";
 
 export default function Home() {
@@ -25,14 +26,11 @@ export default function Home() {
 
   return (
     <div className={styles.hero}>
-      {/* Fondo animado (grid de celdas) */}
       <div className={styles.home}>
         {tiles.map((_, index) => (
           <div key={index} className={styles.tile} {...handlers} />
         ))}
       </div>
-
-      {/* Contenido principal del hero */}
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <h1 className={styles.gameTitle}>
@@ -42,10 +40,13 @@ export default function Home() {
           <p className={styles.tagline}>Resuelve. Rota. Trasciende.</p>
           <button className={styles.ctaButton}>Ver Trailer</button>
         </div>
-
-        {/* Cubo Rubik 3D interactivo - Más grande */}
         <div className={styles.rubikHero}>
-          <InteractiveRubikCube />
+          <div>
+            <InteractiveRubikCube />
+          </div>
+          <div>
+            <InteractiveRubikCubeB />
+          </div>
         </div>
       </div>
     </div>
