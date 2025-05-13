@@ -74,21 +74,21 @@
   }
 }
 
-/* Barra inferior - Links de navegación */
+
 .bottomBar {
   padding: 1rem 0;
   background-color: rgba(15, 15, 25, 0.7);
   backdrop-filter: blur(8px);
 }
 
-/* Contenedor de los links */
+
 .navLinks {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
 }
 
-/* Estilo base de los links */
+
 .link {
   font-size: 1.1rem;
   font-weight: 400;
@@ -100,7 +100,7 @@
   border-radius: 20px;
 }
 
-/* Efectos hover personalizados para cada link (versión pastel) */
+
 .linkHome:hover {
   background-color: rgba(143, 211, 255, 0.2);
   color: #8fd3ff;

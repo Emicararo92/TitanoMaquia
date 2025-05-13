@@ -11,8 +11,8 @@ import logoB from "../../../public/logoMecano.png";
 export default function Navbar() {
   const pathname = usePathname();
   const [animate, setAnimate] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Reinicia la animación cada vez que cambia la ruta
   useEffect(() => {
     setAnimate(false);
     const timer = setTimeout(() => setAnimate(true), 10);
@@ -21,20 +21,23 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      {/* Primera fila - Logos y nombre del juego */}
       <div className={styles.topBar}>
         <div className={styles.logoLeft}>
-          <Image
-            src={logoA}
-            alt="Logo izquierdo"
-            className={styles.logo}
-            width={200}
-            height={200}
-          />
+          <Link href={"/"}>
+            <Image
+              src={logoA}
+              alt="Logo izquierdo"
+              className={styles.logo}
+              width={200}
+              height={200}
+            />
+          </Link>
         </div>
+
         <div className={styles.gameTitle}>
           <h1>Infinite Pathways</h1>
         </div>
+
         <div className={styles.logoRight}>
           <Image
             src={logoB}
@@ -44,9 +47,16 @@ export default function Navbar() {
             className={styles.logo}
           />
         </div>
+
+        <button
+          className={styles.menuButton}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
 
-      {/* Segunda fila - Links de navegación */}
       <div className={styles.bottomBar}>
         <div className={styles.navLinks}>
           <Link
@@ -87,6 +97,39 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div className={styles.mobileMenu}>
+          <Link
+            href="/"
+            className={styles.mobileLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about-us"
+            className={styles.mobileLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About Us
+          </Link>
+          <Link
+            href="/how-to-play"
+            className={styles.mobileLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            How to Play
+          </Link>
+          <Link
+            href="/contact"
+            className={styles.mobileLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
