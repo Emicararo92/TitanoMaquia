@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 type PointerEvent = THREE.Event & {
@@ -10,25 +9,23 @@ type PointerEvent = THREE.Event & {
   clientY: number;
 };
 
-const RubikCubeModelA = () => {
+const RubikCubeModel = () => {
   const modelRef = useRef<THREE.Group>(null);
-
   const { scene } = useGLTF("/cubeB.glb");
-  const [hovered, setHover] = useState(false);
+
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
 
   useFrame(() => {
     if (!modelRef.current) return;
-
     modelRef.current.rotation.x = THREE.MathUtils.lerp(
       modelRef.current.rotation.x,
       targetRotation.x,
-      0.1
+      0.05
     );
     modelRef.current.rotation.y = THREE.MathUtils.lerp(
       modelRef.current.rotation.y,
       targetRotation.y,
-      0.1
+      0.05
     );
   });
 
@@ -37,25 +34,23 @@ const RubikCubeModelA = () => {
     const { innerWidth, innerHeight } = window;
 
     setTargetRotation({
-      x: Math.max(
-        Math.min((clientY / innerHeight - 0.5) * Math.PI * 0.5, Math.PI / 2),
-        -Math.PI / 2
-      ),
-      y: (clientX / innerWidth - 0.5) * Math.PI * 0.5,
+      x: (clientY / innerHeight - 0.5) * Math.PI * 1.2,
+      y: (clientX / innerWidth - 0.5) * Math.PI * 1.5,
     });
+  };
+
+  const resetRotation = () => {
+    setTargetRotation({ x: 0, y: 0 });
   };
 
   return (
     <primitive
       object={scene}
       ref={modelRef}
-      scale={2}
+      scale={3.5}
       onPointerMove={handlePointerMove}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => {
-        setHover(false);
-        setTargetRotation({ x: 0, y: 0 });
-      }}
+      onPointerOver={() => {}}
+      onPointerOut={resetRotation}
     />
   );
 };
@@ -64,16 +59,21 @@ export const InteractiveRubikCubeB = () => {
   return (
     <div
       style={{
-        width: "500px",
-        height: "500px",
-        cursor: "pointer",
+        width: "100%",
+        maxWidth: "700px",
+        aspectRatio: "1 / 1",
         margin: "0 auto",
+        cursor: "pointer",
       }}
     >
-      <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-        <ambientLight intensity={0.8} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <RubikCubeModelA />
+      <Canvas
+        camera={{ position: [0, 0, 10], fov: 50 }}
+        dpr={[1, 2]}
+        gl={{ antialias: true }}
+      >
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+        <RubikCubeModel />
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -81,6 +81,8 @@ export const InteractiveRubikCubeB = () => {
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.5}
         />
+        {/* Cambié a un preset diferente: "city" */}
+        <Environment preset="city" />
       </Canvas>
     </div>
   );

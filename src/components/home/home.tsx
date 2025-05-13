@@ -1,6 +1,6 @@
 "use client";
 import styles from "../../style/home.module.css";
-import { InteractiveRubikCube } from "../cuboRubik/cuboRubikA";
+//import { InteractiveRubikCube } from "../cuboRubik/cuboRubikA";
 import { InteractiveRubikCubeB } from "../cuboRubik/cuboRubikB";
 import { useCallback } from "react";
 
@@ -41,9 +41,9 @@ export default function Home() {
           <button className={styles.ctaButton}>Ver Trailer</button>
         </div>
         <div className={styles.rubikHero}>
-          <div>
+          {/*  <div>
             <InteractiveRubikCube />
-          </div>
+          </div> */}
           <div>
             <InteractiveRubikCubeB />
           </div>

@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.mainContent {
+  padding-top: 120px; /* Ajustalo según el alto real de tu navbar */
+}
+
+@media screen and (max-width: 768px) {
+  .mainContent {
+    padding-top: 90px;
+  }
+}
