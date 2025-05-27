@@ -1,4 +1,5 @@
 "use client";
+
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment } from "@react-three/drei";
@@ -9,10 +10,13 @@ type PointerEvent = THREE.Event & {
   clientY: number;
 };
 
-const RubikCubeModel = () => {
-  const modelRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF("/cubeA.glb");
+type RubikCubeModelProps = {
+  modelPath: string;
+};
 
+const RubikCubeModel = ({ modelPath }: RubikCubeModelProps) => {
+  const modelRef = useRef<THREE.Group>(null);
+  const { scene } = useGLTF(modelPath);
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
 
   useFrame(() => {
@@ -39,9 +43,7 @@ const RubikCubeModel = () => {
     });
   };
 
-  const resetRotation = () => {
-    setTargetRotation({ x: 0, y: 0 });
-  };
+  const resetRotation = () => setTargetRotation({ x: 0, y: 0 });
 
   return (
     <primitive
@@ -55,7 +57,13 @@ const RubikCubeModel = () => {
   );
 };
 
-export const InteractiveRubikCube = () => {
+type InteractiveRubikCubeProps = {
+  modelPath: string;
+};
+
+export const InteractiveRubikCube = ({
+  modelPath,
+}: InteractiveRubikCubeProps) => {
   return (
     <div
       style={{
@@ -73,7 +81,7 @@ export const InteractiveRubikCube = () => {
       >
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={1.2} />
-        <RubikCubeModel />
+        <RubikCubeModel modelPath={modelPath} />
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -81,11 +89,16 @@ export const InteractiveRubikCube = () => {
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.5}
         />
-        {/* Cambié a un preset diferente: "city" */}
         <Environment preset="city" />
       </Canvas>
     </div>
   );
 };
 
+// Preload de todos los cubos disponibles
 useGLTF.preload("/cubeA.glb");
+useGLTF.preload("/cubeB.glb");
+useGLTF.preload("/cubeC.glb");
+useGLTF.preload("/cubeD.glb");
+useGLTF.preload("/cubeE.glb");
+useGLTF.preload("/cubeF.glb");

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "../../style/navbar.module.css";
 import Image from "next/image";
-import logoA from "../../../public/logo.png";
+import logoA from "../../../public/logoBlanco.png";
 import logoB from "../../../public/logoMecano.png";
 
 export default function Navbar() {
@@ -27,9 +27,9 @@ export default function Navbar() {
             <Image
               src={logoA}
               alt="Logo izquierdo"
-              className={styles.logo}
-              width={200}
-              height={200}
+              className={`${styles.logo}`}
+              width={45}
+              height={45}
             />
           </Link>
         </div>
@@ -42,8 +42,8 @@ export default function Navbar() {
           <Image
             src={logoB}
             alt="Logo derecho"
-            width={200}
-            height={200}
+            width={45}
+            height={45}
             className={styles.logo}
           />
         </div>
@@ -78,7 +78,7 @@ export default function Navbar() {
             About Us
           </Link>
           <Link
-            href="/how-to-play"
+            href="/howToPlay"
             className={`${styles.link} ${styles.linkHowToPlay} ${
               animate ? styles.boingInUp : ""
             }`}
@@ -115,7 +115,7 @@ export default function Navbar() {
             About Us
           </Link>
           <Link
-            href="/how-to-play"
+            href="/howToPlay"
             className={styles.mobileLink}
             onClick={() => setIsMenuOpen(false)}
           >

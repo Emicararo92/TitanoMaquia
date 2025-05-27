@@ -1,5 +1,5 @@
 /* Base Styles */
-.gameDescription {
+.howToPlaySection {
   position: relative;
   min-height: 100vh;
   padding: 6rem 2rem;
@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-.gameDescription::before {
+.howToPlaySection::before {
   content: "";
   position: absolute;
   top: 0;
@@ -44,30 +44,11 @@
   width: 90%;
 }
 
-.cubeContainer {
+.gridVisualization {
   flex: 0 0 45%;
   min-width: 400px;
   perspective: 1000px;
   animation: float 6s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-}
-
-.cubeContainer::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  height: 30px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.4) 0%,
-    transparent 70%
-  );
-  filter: blur(10px);
-  z-index: -1;
 }
 
 /* Text Content */
@@ -106,7 +87,7 @@
 }
 
 /* Typography */
-.gameTitle {
+.sectionTitle {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: clamp(2.5rem, 4vw, 4rem);
@@ -122,6 +103,65 @@
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-weight: 300;
+}
+
+/* Rules Container */
+.rulesContainer {
+  display: grid;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.ruleBox {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #7f5af0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ruleBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ruleBox h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #b91372;
+}
+
+/* Highlight Elements */
+.highlight {
+  display: inline-block;
+  background: rgba(127, 90, 240, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.difficulty {
+  display: block;
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid;
+}
+
+.difficulty:first-of-type {
+  border-color: #7f5af0;
+  color: #7f5af0;
+}
+
+.difficulty:last-of-type {
+  border-color: #b91372;
+  color: #b91372;
+}
+
+.exception {
+  font-style: italic;
+  color: #f72585;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
 }
 
 /* Feature List */
@@ -143,17 +183,6 @@
   position: absolute;
   left: 0;
   color: #7f5af0;
-}
-
-/* Highlight Elements */
-.strong {
-  color: #b91372;
-  font-weight: 600;
-}
-
-.em {
-  color: #7f5af0;
-  font-style: italic;
 }
 
 /* Scroll Button */
@@ -199,7 +228,7 @@
     gap: 3rem;
   }
 
-  .cubeContainer {
+  .gridVisualization {
     min-width: 300px;
     width: 100%;
   }
@@ -211,15 +240,51 @@
 }
 
 @media (max-width: 768px) {
-  .gameDescription {
+  .howToPlaySection {
     padding: 4rem 1.5rem;
   }
 
-  .gameTitle {
+  .sectionTitle {
     font-size: 2.2rem;
   }
 
   .textContent p {
     font-size: 1rem;
   }
+
+  .rulesContainer {
+    gap: 1.5rem;
+  }
+
+  .ruleBox {
+    padding: 1.2rem;
+  }
+}
+
+/* Añade estas reglas adicionales al CSS existente */
+
+.cubeContainer {
+  flex: 0 0 45%;
+  min-width: 400px;
+  perspective: 1000px;
+  animation: float 6s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.cubeContainer::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 30px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  z-index: -1;
 }
