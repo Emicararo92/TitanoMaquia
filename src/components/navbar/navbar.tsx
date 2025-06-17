@@ -66,7 +66,7 @@ export default function Navbar() {
             }`}
             style={{ animationDelay: "0.1s" }}
           >
-            Home
+            Inicio
           </Link>
           <Link
             href="/about-us"
@@ -75,7 +75,7 @@ export default function Navbar() {
             }`}
             style={{ animationDelay: "0.2s" }}
           >
-            About Us
+            Sobre el juego
           </Link>
           <Link
             href="/howToPlay"
@@ -84,7 +84,7 @@ export default function Navbar() {
             }`}
             style={{ animationDelay: "0.3s" }}
           >
-            How to Play
+            Como jugar
           </Link>
           <Link
             href="/contact"
@@ -93,7 +93,7 @@ export default function Navbar() {
             }`}
             style={{ animationDelay: "0.4s" }}
           >
-            Contact
+            Contacto
           </Link>
         </div>
       </div>
@@ -105,28 +105,28 @@ export default function Navbar() {
             className={styles.mobileLink}
             onClick={() => setIsMenuOpen(false)}
           >
-            Home
+            Inicio
           </Link>
           <Link
             href="/about-us"
             className={styles.mobileLink}
             onClick={() => setIsMenuOpen(false)}
           >
-            About Us
+            Sobre el juego
           </Link>
           <Link
             href="/howToPlay"
             className={styles.mobileLink}
             onClick={() => setIsMenuOpen(false)}
           >
-            How to Play
+            Como jugar
           </Link>
           <Link
             href="/contact"
             className={styles.mobileLink}
             onClick={() => setIsMenuOpen(false)}
           >
-            Contact
+            Contacto
           </Link>
         </div>
       )}

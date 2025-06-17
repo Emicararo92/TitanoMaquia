@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment } from "@react-three/drei";
 import * as THREE from "three";
@@ -18,9 +18,25 @@ const RubikCubeModel = ({ modelPath }: RubikCubeModelProps) => {
   const modelRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(modelPath);
   const [targetRotation, setTargetRotation] = useState({ x: 0, y: 0 });
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [scrollRotation, setScrollRotation] = useState(0);
 
-  useFrame(() => {
+  // Rotación automática cuando no hay interacción
+  useFrame((state) => {
     if (!modelRef.current) return;
+
+    // Si no hay interacción, agregamos rotación automática
+    if (!isInteracting) {
+      const time = state.clock.getElapsedTime();
+      setTargetRotation({
+        x: Math.sin(time * 0.3) * 0.2,
+        y: Math.sin(time * 0.2) * 0.5,
+      });
+    }
+
+    // Aplicamos scroll rotation en el eje Y
+    const targetY = targetRotation.y + scrollRotation;
+
     modelRef.current.rotation.x = THREE.MathUtils.lerp(
       modelRef.current.rotation.x,
       targetRotation.x,
@@ -28,12 +44,13 @@ const RubikCubeModel = ({ modelPath }: RubikCubeModelProps) => {
     );
     modelRef.current.rotation.y = THREE.MathUtils.lerp(
       modelRef.current.rotation.y,
-      targetRotation.y,
+      targetY,
       0.05
     );
   });
 
   const handlePointerMove = (e: PointerEvent) => {
+    setIsInteracting(true);
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
 
@@ -43,7 +60,24 @@ const RubikCubeModel = ({ modelPath }: RubikCubeModelProps) => {
     });
   };
 
-  const resetRotation = () => setTargetRotation({ x: 0, y: 0 });
+  const handleInteractionEnd = () => {
+    setIsInteracting(false);
+    setTargetRotation({ x: 0, y: 0 });
+  };
+
+  // Efecto para el scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      // Normalizamos el scroll entre 0 y 1 basado en la posición
+      const scrollPosition =
+        window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      // Mapeamos a rotación (-0.5 a 0.5 radianes)
+      setScrollRotation(scrollPosition * 2 - 1);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <primitive
@@ -51,8 +85,8 @@ const RubikCubeModel = ({ modelPath }: RubikCubeModelProps) => {
       ref={modelRef}
       scale={3.5}
       onPointerMove={handlePointerMove}
-      onPointerOver={() => {}}
-      onPointerOut={resetRotation}
+      onPointerOver={() => setIsInteracting(true)}
+      onPointerOut={handleInteractionEnd}
     />
   );
 };

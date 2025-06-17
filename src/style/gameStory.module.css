@@ -1,12 +1,21 @@
-/* Base Styles */
+/* Layout - Versión invertida */
+.heroText {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  flex-direction: row-reverse; /* Esta línea invierte el orden */
+}
+
+/* El resto del CSS permanece igual */
 .gameDescription {
   position: relative;
   min-height: 100vh;
-  padding: 6rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(135deg, #0f0524 0%, #1a0933 100%);
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 3vw, 2rem);
   color: #e6e6e6;
   overflow: hidden;
 }
@@ -31,26 +40,13 @@
   z-index: 0;
 }
 
-/* Layout */
-.heroText {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 90%;
-}
-
+/* Cubo */
 .cubeContainer {
-  flex: 0 0 45%;
-  min-width: 400px;
+  width: min(45vw, 500px);
+  height: min(45vw, 500px);
+  margin: 0 auto;
   perspective: 1000px;
   animation: float 6s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
 }
 
 .cubeContainer::after {
@@ -70,7 +66,7 @@
   z-index: -1;
 }
 
-/* Text Content */
+/* Contenedor de texto con scroll */
 .textWrapper {
   flex: 1;
   position: relative;
@@ -95,17 +91,12 @@
   width: 6px;
 }
 
-.textContentContainer::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
 .textContentContainer::-webkit-scrollbar-thumb {
   background: linear-gradient(#7f5af0, #b91372);
   border-radius: 10px;
 }
 
-/* Typography */
+/* Títulos */
 .gameTitle {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
@@ -117,14 +108,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.textContent p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-}
-
-/* Feature List */
+/* Lista de características */
 .featureList {
   margin: 1rem 0;
   padding-left: 1.2rem;
@@ -145,18 +129,7 @@
   color: #7f5af0;
 }
 
-/* Highlight Elements */
-.strong {
-  color: #b91372;
-  font-weight: 600;
-}
-
-.em {
-  color: #7f5af0;
-  font-style: italic;
-}
-
-/* Scroll Button */
+/* Botón de scroll */
 .scrollToggleButton {
   position: absolute;
   bottom: 3rem;
@@ -181,17 +154,6 @@
   box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
 }
 
-/* Animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .heroText {
@@ -200,26 +162,17 @@
   }
 
   .cubeContainer {
-    min-width: 300px;
-    width: 100%;
+    width: min(70vw, 400px);
+    height: min(70vw, 400px);
   }
 
   .textWrapper {
     height: 50vh;
-    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .gameDescription {
-    padding: 4rem 1.5rem;
-  }
-
   .gameTitle {
     font-size: 2.2rem;
-  }
-
-  .textContent p {
-    font-size: 1rem;
   }
 }

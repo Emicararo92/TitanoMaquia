@@ -1,12 +1,8 @@
-/* Base Styles */
+/* Base */
 .howToPlaySection {
   position: relative;
   min-height: 100vh;
-  padding: 6rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(135deg, #0f0524 0%, #1a0933 100%);
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 3vw, 2rem);
   color: #e6e6e6;
   overflow: hidden;
 }
@@ -31,27 +27,46 @@
   z-index: 0;
 }
 
-/* Layout */
-.heroText {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 90%;
-}
-
+/* Cubo */
 .gridVisualization {
-  flex: 0 0 45%;
-  min-width: 400px;
+  width: min(45vw, 500px);
+  height: min(45vw, 500px);
+  margin: 0 auto;
   perspective: 1000px;
   animation: float 6s ease-in-out infinite;
 }
 
-/* Text Content */
+.gridVisualization::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 30px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/* Layout INVERTIDO (cubo a la derecha) */
+.heroText {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  flex-direction: row-reverse; /* Línea clave para invertir el orden */
+}
+
+/* Contenedor de texto con scroll */
 .textWrapper {
   flex: 1;
   position: relative;
@@ -72,6 +87,7 @@
   );
 }
 
+/* Scrollbar personalizada */
 .textContentContainer::-webkit-scrollbar {
   width: 6px;
 }
@@ -86,7 +102,7 @@
   border-radius: 10px;
 }
 
-/* Typography */
+/* Títulos */
 .sectionTitle {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
@@ -98,14 +114,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.textContent p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-}
-
-/* Rules Container */
+/* Reglas */
 .rulesContainer {
   display: grid;
   gap: 2rem;
@@ -131,61 +140,7 @@
   color: #b91372;
 }
 
-/* Highlight Elements */
-.highlight {
-  display: inline-block;
-  background: rgba(127, 90, 240, 0.2);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.difficulty {
-  display: block;
-  margin: 0.5rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid;
-}
-
-.difficulty:first-of-type {
-  border-color: #7f5af0;
-  color: #7f5af0;
-}
-
-.difficulty:last-of-type {
-  border-color: #b91372;
-  color: #b91372;
-}
-
-.exception {
-  font-style: italic;
-  color: #f72585;
-  font-size: 0.9em;
-  margin-top: 0.5rem;
-}
-
-/* Feature List */
-.featureList {
-  margin: 1rem 0;
-  padding-left: 1.2rem;
-  list-style-type: none;
-}
-
-.featureList li {
-  position: relative;
-  margin-bottom: 0.8rem;
-  padding-left: 1.5rem;
-  line-height: 1.6;
-}
-
-.featureList li::before {
-  content: "▹";
-  position: absolute;
-  left: 0;
-  color: #7f5af0;
-}
-
-/* Scroll Button */
+/* Botón de scroll */
 .scrollToggleButton {
   position: absolute;
   bottom: 3rem;
@@ -210,7 +165,29 @@
   box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
 }
 
-/* Animations */
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroText {
+    flex-direction: column; /* En móvil sigue siendo cubo arriba */
+    gap: 3rem;
+  }
+
+  .gridVisualization {
+    width: min(70vw, 400px);
+    height: min(70vw, 400px);
+  }
+
+  .textWrapper {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+}
+
 @keyframes float {
   0%,
   100% {
@@ -219,72 +196,4 @@
   50% {
     transform: translateY(-20px);
   }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .heroText {
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .gridVisualization {
-    min-width: 300px;
-    width: 100%;
-  }
-
-  .textWrapper {
-    height: 50vh;
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .howToPlaySection {
-    padding: 4rem 1.5rem;
-  }
-
-  .sectionTitle {
-    font-size: 2.2rem;
-  }
-
-  .textContent p {
-    font-size: 1rem;
-  }
-
-  .rulesContainer {
-    gap: 1.5rem;
-  }
-
-  .ruleBox {
-    padding: 1.2rem;
-  }
-}
-
-/* Añade estas reglas adicionales al CSS existente */
-
-.cubeContainer {
-  flex: 0 0 45%;
-  min-width: 400px;
-  perspective: 1000px;
-  animation: float 6s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-}
-
-.cubeContainer::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  height: 30px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.4) 0%,
-    transparent 70%
-  );
-  filter: blur(10px);
-  z-index: -1;
 }
