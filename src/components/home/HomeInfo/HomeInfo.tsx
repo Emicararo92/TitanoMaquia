@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import DivLineSmall from "../../../app/utils/DivLine/DivLineSmall";
+import DivLineSmall from "../../../utils/DivLine/DivLineSmall";
 import Image from "next/image";
 import styles from "../../../Styles/HomeInfo.module.css";
 

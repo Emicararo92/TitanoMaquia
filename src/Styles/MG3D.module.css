@@ -1,0 +1,149 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(rgba(20, 20, 20, 0.9), rgba(20, 20, 20, 0.9)),
+    url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+      center/cover fixed;
+  overflow-x: hidden;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem; /* Más espacio entre cards */
+  padding: 1.5rem;
+}
+
+.modelCard {
+  position: relative;
+  height: 320px; /* Altura aumentada */
+  background: rgba(35, 35, 35, 0.6); /* Fondo más oscuro */
+  backdrop-filter: blur(8px); /* Efecto vidrio */
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(160, 80, 64, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.modelCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(160, 80, 64, 0.3),
+    inset 0 0 0 1px rgba(231, 199, 137, 0.2);
+  background: rgba(45, 45, 45, 0.7);
+}
+
+.modelOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.95); /* Fondo más oscuro para overlay */
+  backdrop-filter: blur(12px); /* Más blur */
+  z-index: 10;
+}
+
+.expandedView {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85vw;
+  height: 85vh;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(160, 80, 64, 0.5);
+  box-shadow: 0 0 40px rgba(160, 80, 64, 0.4),
+    inset 0 0 20px rgba(231, 199, 137, 0.1);
+  z-index: 20;
+  overflow: hidden;
+}
+
+.closeButton {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: rgba(160, 80, 64, 0.9);
+  color: #e9c789;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(231, 199, 137, 0.3);
+}
+
+.closeButton:hover {
+  background: #e78a66;
+  color: #1a1a1a;
+  transform: scale(1.1);
+}
+
+/* Efecto de borde sutil al hacer hover */
+.modelCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(231, 199, 137, 0.4),
+    rgba(231, 138, 102, 0.2)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modelCard:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .modelCard {
+    height: 250px;
+  }
+
+  .expandedView {
+    width: 95vw;
+    height: 60vh;
+    border-radius: 12px;
+  }
+
+  .closeButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    top: 20px;
+    right: 20px;
+  }
+}
