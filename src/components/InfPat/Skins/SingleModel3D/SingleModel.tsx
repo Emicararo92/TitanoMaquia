@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useRef } from "react";
@@ -10,18 +9,18 @@ export default function SingleModel({
   modelPath,
   isExpanded = false,
   isActive = false,
-  onClose,
+  shouldRotate = true,
 }: {
   modelPath: string;
   isExpanded?: boolean;
   isActive?: boolean;
-  onClose?: () => void;
+  shouldRotate?: boolean;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(modelPath);
 
   useFrame(() => {
-    if (groupRef.current && !isExpanded) {
+    if (groupRef.current && shouldRotate) {
       groupRef.current.rotation.y += 0.005;
     }
   });

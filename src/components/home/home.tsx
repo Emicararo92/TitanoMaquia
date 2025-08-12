@@ -11,6 +11,7 @@ function Home() {
     <div>
       <Hero />
       <DivLineSmall />
+      <HomeInfo />
       <Banner
         backgroundImage={
           "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019641/BannerB_hebblh.jpg"
@@ -22,10 +23,13 @@ function Home() {
       <DivLineSmall />
       <ModelGallery3D />
       <DivLineSmall />
-      <HomeInfo />
-      <DivLineSmall />
+      <Banner
+        backgroundImage={
+          "https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755019640/BannerA_rxexph.jpg"
+        }
+        slogan={"Quienes Somos"}
+      />
       <DivLine logoSrc={"/Icon.png"} />
-
       <DivLineSmall />
     </div>
   );

@@ -27,7 +27,6 @@ export default function ModelGallery3D() {
           onClick={() => setExpandedModel(null)}
         />
       )}
-      <h1 className="text-center m-3.5">Skinks</h1>
 
       <div className={styles.cardsGrid}>
         {modelPaths.map((model, index) => (
@@ -40,9 +39,11 @@ export default function ModelGallery3D() {
               <ambientLight intensity={0.7} />
               <pointLight position={[5, 5, 5]} intensity={1} />
               <Suspense fallback={null}>
+                {/* Cada card tiene su propia instancia del modelo */}
                 <SingleModel
                   modelPath={model}
                   isActive={expandedModel === model}
+                  shouldRotate={!expandedModel} // Solo rotar si no hay modelo expandido
                 />
               </Suspense>
             </Canvas>
@@ -56,10 +57,11 @@ export default function ModelGallery3D() {
             <ambientLight intensity={1} />
             <pointLight position={[10, 10, 10]} intensity={1.5} />
             <Suspense fallback={null}>
+              {/* Esta es una instancia separada para la vista expandida */}
               <SingleModel
                 modelPath={expandedModel}
                 isExpanded
-                onClose={() => setExpandedModel(null)}
+                shouldRotate={false}
               />
               <OrbitControls />
             </Suspense>

@@ -1,17 +1,15 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* toda la pantalla */
-  overflow: hidden; /* por si la imagen se pasa */
+  height: 60vh;
+  background: linear-gradient(rgba(30, 30, 30, 0.7), rgba(30, 30, 30, 0.7)),
+    url("https://res.cloudinary.com/dcn7oqg4l/image/upload/v1755020843/Banner_Web_sf634d.png")
+      center/cover;
+  overflow: hidden;
 }
 
-.bannerContainer {
-  position: relative;
-  width: 100%;
-  height: 100%; /* 100% del hero */
-}
-
-.bannerImage {
-  object-fit: cover; /* rellena sin dejar espacios */
-  object-position: center;
+@media (min-width: 768px) {
+  .hero {
+    height: 100vh;
+  }
 }
