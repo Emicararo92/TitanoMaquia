@@ -1,0 +1,67 @@
+/* components/Footer/styles.module.css */
+.footer {
+  background: linear-gradient(to right, #a05040, #7b7b79);
+  padding: 3rem 2rem;
+  border-top: 3px solid #e9c789;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
+.social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.icon {
+  color: #e9c789;
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s;
+}
+
+.icon:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.legal {
+  text-align: center;
+}
+
+.legal p {
+  color: #e9c789;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.legalLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.legalLinks a {
+  color: #e9c789;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+.legalLinks a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.gameCredits {
+  text-align: right;
+  color: #e9c789;
+  font-style: italic;
+  font-size: 0.9rem;
+}

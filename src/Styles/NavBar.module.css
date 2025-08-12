@@ -1,0 +1,39 @@
+/* components/Navbar/styles.module.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #a05040;
+  z-index: 1000;
+}
+
+.logo img {
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e9c789;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #ffffff;
+}
