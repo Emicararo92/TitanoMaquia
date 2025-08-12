@@ -13,7 +13,7 @@ export default function Hero() {
       <section className={styles.hero}>
         <div className={styles.bannerContainer}>
           <Image
-            src="/Banner2.png"
+            src="/Banner.png"
             alt="Banner principal"
             fill
             priority

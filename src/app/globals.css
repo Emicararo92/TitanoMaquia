@@ -22,13 +22,9 @@
 }
 
 body {
-  background: var(--background);
+  background: #ff910aae;
   color: var(--foreground);
   font-family: var(--font-handlee), Arial, Helvetica, sans-serif;
-}
-
-.mainContent {
-  padding-top: 120px; /* Ajustalo según el alto real de tu navbar */
 }
 
 @media screen and (max-width: 768px) {
